@@ -22,7 +22,8 @@ include_directories(
 
 set(SOURCE 
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/test_board.cpp	
+	${CMAKE_CURRENT_SOURCE_DIR}/src/test_board.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/test_nim.cpp
 	${CMAKE_SOURCE_DIR}/source/src/board.cpp
 	${CMAKE_SOURCE_DIR}/source/src/nim.cpp
 )
