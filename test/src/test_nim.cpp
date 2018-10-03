@@ -24,12 +24,12 @@ TEST_CASE("finish", "[nim]")
 TEST_CASE("winner", "[nim]")
 {
     Nim n;
-    REQUIRE(n.get_winner_player() == nullptr);
+    REQUIRE_FALSE(n.get_winner_player());
     n.play(3);
     n.play(3);
     n.play(3);
     n.play(3);
     n.play(3);
-    REQUIRE(n.get_winner_player() != nullptr);
-    REQUIRE(*n.get_winner_player() == n.get_player(player_e::p2));
+    REQUIRE(n.get_winner_player());
+    REQUIRE(n.get_winner_player().value() == n.get_player(player_e::p2));
 }
