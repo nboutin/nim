@@ -22,19 +22,15 @@ include_directories(
 
 set(SOURCE 
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/test_board.cpp
-	
+	${CMAKE_CURRENT_SOURCE_DIR}/src/test_board.cpp	
 	${CMAKE_SOURCE_DIR}/source/src/board.cpp
-#	${CMAKE_CURRENT_SOURCE_DIR}/../source/src/view_ascii.cpp
-#	${CMAKE_CURRENT_SOURCE_DIR}/../source/src/connect4.cpp
-#	${CMAKE_CURRENT_SOURCE_DIR}/../source/ai/minmax.cpp
-#	${CMAKE_CURRENT_SOURCE_DIR}/../source/ai/evaluate.cpp
+	${CMAKE_SOURCE_DIR}/source/src/nim.cpp
 )
 
 ##### Compilation
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=gnu++17")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 ##### Target
 
@@ -45,7 +41,3 @@ target_link_libraries(
 	Catch
 	pthread
 )
-
-##### Install
-
-#install(TARGETS ${PROJECT_NAME} DESTINATION ${INSTALL_TEST_PATH})

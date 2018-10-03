@@ -3,47 +3,46 @@
 
 #include <catch.hpp>
 
-//using namespace connect4;
+using namespace nim;
 
-TEST_CASE("play two token", "[board]")
+TEST_CASE("default", "[board]")
 {
-//    Board b;
-//
-//    REQUIRE(b.play(0, color_e::red));
-//
-//    REQUIRE(b.play(0, color_e::yellow));
-//
-//    const auto& g = b.get_grid();
-//
-//    REQUIRE(g[0][5] == color_e::red);
-//    REQUIRE(g[0][4] == color_e::yellow);
-//    REQUIRE(!g[0][3]);
+    Board b;
+    REQUIRE(b.get_tokens() == Board::TOKEN_COUNT);
+}
+
+TEST_CASE("play", "[board]")
+{
+    Board b;
+    REQUIRE(b.play(1));
+    REQUIRE(b.play(2));
+    REQUIRE(b.play(3));
+}
+
+TEST_CASE("unplay", "[board]")
+{
+    Board b;
+    b.play(3);
+    b.unplay(1);
+    REQUIRE(b.get_tokens() == Board::TOKEN_COUNT - 3 + 1);
 }
 
 TEST_CASE("boundaries", "[board]")
 {
-//    Board b;
-//
-//    REQUIRE_FALSE(b.play(-1, color_e::red));
-//    REQUIRE_FALSE(b.play(Board::N_COLUMN, color_e::yellow));
-//
-//    bool empty = true;
-//    for(const auto& g : b.get_grid())
-//        for(const auto& c : g)
-//            empty &= !c;
-//    REQUIRE(empty);
+    Board b;
+    REQUIRE_FALSE(b.play(0));
+    REQUIRE_FALSE(b.play(4));
 }
 
-TEST_CASE("full column", "[board]")
+TEST_CASE("tokens", "[board]")
 {
-//    Board b;
-//
-//    for(int i = 0; i < Board::N_ROW; ++i)
-//    {
-//        REQUIRE(b.play(0, color_e::red));
-//    }
-//    const auto& g = b.get_grid();
-//    REQUIRE(g[0][0] == color_e::red);
-//
-//    REQUIRE_FALSE(b.play(0, color_e::red));
+    Board b;
+    b.play(3);
+    REQUIRE(b.get_tokens() == Board::TOKEN_COUNT - 3);
+
+    b.play(2);
+    REQUIRE(b.get_tokens() == Board::TOKEN_COUNT - 3 - 2);
+
+    b.play(1);
+    REQUIRE(b.get_tokens() == Board::TOKEN_COUNT - 3 - 2 - 1);
 }
