@@ -24,7 +24,7 @@ before_script:
    - mkdir build
    - cd build
   
-script: cmake .. && make
+script: cmake .. && make -j 4
       
 
     
