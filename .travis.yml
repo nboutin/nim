@@ -1,0 +1,30 @@
+##### Configuration
+language: cpp
+dist: trusty
+os: linux
+sudo: require
+compiler:
+   - gcc
+#   - clang
+
+notifications:
+   email:
+      on_success: change
+      on_failure: change
+
+before_install:
+   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+   - sudo apt-get update -qq
+
+install: 
+   - sudo apt-get install -qq g++-7
+   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+
+before_script:
+   - mkdir build
+   - cd build
+  
+script: cmake .. && make -j 4
+      
+
+    

@@ -26,7 +26,7 @@ public:
 
     const Player& get_current_player() const { return *current_player; }
     const Player& get_player(player_e p);
-    const Player* get_winner_player() const { return winner_player; }
+    std::optional<Player> get_winner_player() const;
     void set_ai(player_e p);
     void set_name(player_e p, const std::string& name);
 

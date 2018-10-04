@@ -70,6 +70,14 @@ const Player& Nim::get_player(const player_e p)
     return p1;
 }
 
+std::optional<Player> Nim::get_winner_player() const
+{
+    if(winner_player == nullptr)
+        return {};
+    else
+        return *winner_player;
+}
+
 void Nim::set_ai(const player_e p)
 {
     switch(p)
