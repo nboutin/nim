@@ -1,0 +1,14 @@
+##### Configuration
+language: cpp
+
+before_script:
+   - mkdir build
+   - cd build
+  
+matrix:
+   -  os: linux
+      script: 
+      - cmake .. && make
+      
+
+    
