@@ -9,6 +9,7 @@ compiler:
 
 notifications:
    email:
+   recipients:     
       - boutwork@gmail.com 
       on_success: always
       on_failure: always
