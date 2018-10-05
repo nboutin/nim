@@ -27,6 +27,3 @@ before_script:
    - cd build
   
 script: cmake .. && make -j 4
-      
-
-    
