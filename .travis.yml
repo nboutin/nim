@@ -11,8 +11,8 @@ notifications:
    email:
       recipients:     
          - boutwork@gmail.com 
-      on_success: always
-      on_failure: always
+      on_success: change
+      on_failure: change
 
 before_install:
    - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test

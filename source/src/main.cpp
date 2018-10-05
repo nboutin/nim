@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
     //    auto level = 0;
     //    cin >> level;
 
-    Nim game
+    Nim game;
     //    game.set_ai(player_e::p1);
     //    game.set_name(player_e::p1, "AI_1");
 
