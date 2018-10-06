@@ -5,6 +5,7 @@
 #include "view_ascii.h"
 
 #include <iostream>
+#include <string>
 
 using namespace nim;
 using namespace std;
@@ -37,15 +38,24 @@ int main(int argc, char* argv[])
         view.display();
 
         // Input
-        int m = 0;
+        std::string input;
+        getline(std::cin, input);
+        if(input.empty())
+        {
+            view.message("Input is invalid");
+            continue;
+        }
         //        if(game.get_current_player().is_ai())
         //            y = minmax.compute(game, Minmax::algo::minmax_parallel, chrono::seconds(5));
         //        else
-        cin >> m;
+        //        cin >> m;
 
         // Compute
-        if(game.play(m) == false)
+        if(game.play(std::stoi(input)) == false)
+        {
             view.message("Input is invalid");
+            continue;
+        }
     }
     view.message("Game is finished");
     view.message("Winner is " + game.get_winner_player()->get_name());
