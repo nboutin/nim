@@ -14,6 +14,8 @@ void View_ASCII::display(bool clear)
     if(clear && std::system("clear") == -1)
         return;
 
+    cout << "Nim v0.3.0\n";
+
     print_grid(grid);
     print_history();
     cout << current_player.get_name() << ":";
