@@ -9,6 +9,8 @@ compiler:
 
 notifications:
    email:
+      recipients:     
+         - boutwork@gmail.com 
       on_success: change
       on_failure: change
 
@@ -25,6 +27,3 @@ before_script:
    - cd build
   
 script: cmake .. && make -j 4
-      
-
-    
