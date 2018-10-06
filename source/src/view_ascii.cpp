@@ -14,12 +14,9 @@ void View_ASCII::display(bool clear)
     if(clear && std::system("clear") == -1)
         return;
 
-    for(auto i = 1; i < Board::TOKEN_COUNT + 1; ++i)
-        cout << setw(3) << std::to_string(i);
-    cout << '\n';
-
     print_grid(grid);
     print_history();
+    cout << current_player.get_name() << ":";
 
     for(const auto& msg : msgs)
         cout << msg << '\n';
@@ -46,6 +43,10 @@ void View_ASCII::print_history() const
 
 void View_ASCII::print_grid(const Board::grid_t& g) const
 {
+    for(auto i = 1; i < Board::TOKEN_COUNT + 1; ++i)
+        cout << setw(3) << std::to_string(i);
+    cout << '\n';
+
     for(auto i = 0; i < g; ++i)
         cout << " | ";
     cout << '\n';

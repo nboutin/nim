@@ -2,8 +2,8 @@
 #pragma once
 
 #include "board.h"
-#include "player.h"
 #include "nim.h"
+#include "player.h"
 
 #include <optional>
 #include <string>
@@ -27,9 +27,8 @@ private:
     void print_history() const;
 
     const Board::grid_t& grid;
-    Player current_player;
-
     std::vector<std::string> msgs;
     Nim::moves_t history;
+    Player current_player;
 };
 }
