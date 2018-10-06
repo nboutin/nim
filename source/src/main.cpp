@@ -1,6 +1,7 @@
 
 #include "nim.h"
 //#include "minmax.h"
+#include "menu_view.h"
 #include "view_ascii.h"
 
 #include <iostream>
@@ -11,6 +12,10 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    Menu_View menu;
+    menu.display();
+    auto players = menu.get_players();
+
     //    cout << "Choose AI level:";
     //    auto level = 0;
     //    cin >> level;

@@ -15,6 +15,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external)
 
 set(SOURCE
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/menu_view.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/nim.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/board.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/view_ascii.cpp
