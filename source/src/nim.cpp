@@ -4,7 +4,9 @@
 using namespace nim;
 using namespace std;
 
-Nim::Nim() : p1("Player 1"), p2("Player 2"), current_player(&p1) {}
+Nim::Nim(Board::grid_t n_token)
+    : p1("Player 1"), p2("Player 2"), current_player(&p1), board(n_token)
+{}
 
 bool Nim::play(const Board::move_t m)
 {
@@ -46,8 +48,10 @@ bool Nim::compute_ending()
     finished = (board.get_tokens() == Board::TOKEN_MIN);
     if(finished)
     {
-        next_player();
-        winner_player = current_player;
+        if(*current_player == p1)
+            winner_player = &p2;
+        else
+            winner_player = &p1;
     }
     return finished;
 }

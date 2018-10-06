@@ -16,7 +16,7 @@ class Nim
 public:
     using moves_t = std::vector<std::optional<Board::move_t>>;
 
-    Nim();
+    Nim(Board::grid_t n_token = Board::TOKEN_COUNT);
     bool play(Board::move_t m);
     void undo();
 

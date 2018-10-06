@@ -12,10 +12,11 @@ public:
     using grid_t = int8_t;
 
     static constexpr grid_t TOKEN_COUNT = 15;
-    static constexpr grid_t TOKEN_MIN = 0;
-    static constexpr move_t MOVE_MIN = 1;
-    static constexpr move_t MOVE_MAX = 3;
+    static constexpr grid_t TOKEN_MIN   = 0;
+    static constexpr move_t MOVE_MIN    = 1;
+    static constexpr move_t MOVE_MAX    = 3;
 
+    Board(grid_t n_token = TOKEN_COUNT) : tokens(n_token) {}
     const grid_t& get_tokens() const { return tokens; }
 
     bool play(move_t m);
