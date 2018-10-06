@@ -24,11 +24,11 @@ public:
 
     const Board& get_board() const { return board; }
 
+    void set_player(player_e p, const Player& player);
+
     const Player& get_current_player() const { return *current_player; }
     const Player& get_player(player_e p);
     std::optional<Player> get_winner_player() const;
-    void set_ai(player_e p);
-    void set_name(player_e p, const std::string& name);
 
     moves_t get_history() const { return moves; }
 

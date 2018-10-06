@@ -60,6 +60,14 @@ void Nim::next_player()
         current_player = &p1;
 }
 
+std::optional<Player> Nim::get_winner_player() const
+{
+    if(winner_player == nullptr)
+        return {};
+    else
+        return *winner_player;
+}
+
 const Player& Nim::get_player(const player_e p)
 {
     switch(p)
@@ -70,28 +78,11 @@ const Player& Nim::get_player(const player_e p)
     return p1;
 }
 
-std::optional<Player> Nim::get_winner_player() const
-{
-    if(winner_player == nullptr)
-        return {};
-    else
-        return *winner_player;
-}
-
-void Nim::set_ai(const player_e p)
+void Nim::set_player(const player_e p, const Player& player)
 {
     switch(p)
     {
-    case player_e::p1: p1.set_ai(); break;
-    case player_e::p2: p2.set_ai(); break;
-    }
-}
-
-void Nim::set_name(const player_e p, const std::string& name)
-{
-    switch(p)
-    {
-    case player_e::p1: p1.set_name(name); break;
-    case player_e::p2: p2.set_name(name); break;
+    case player_e::p1: p1 = player; break;
+    case player_e::p2: p2 = player; break;
     }
 }

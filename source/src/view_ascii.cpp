@@ -32,7 +32,7 @@ void View_ASCII::message(const std::string& msg) { msgs.push_back(msg); }
 
 void View_ASCII::print_history() const
 {
-    cout << "history:";
+    cout << "History:";
     for(auto h : history)
     {
         if(h)

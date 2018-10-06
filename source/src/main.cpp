@@ -17,17 +17,13 @@ int main(int argc, char* argv[])
     menu.display();
     auto players = menu.get_players();
 
-    //    cout << "Choose AI level:";
-    //    auto level = 0;
-    //    cin >> level;
-
     Nim game;
-    //    game.set_ai(player_e::p1);
-    //    game.set_name(player_e::p1, "AI_1");
+    game.set_player(player_e::p1, players.at(0));
+    game.set_player(player_e::p2, players.at(1));
 
     View_ASCII view(game.get_board().get_tokens());
 
-    //    Minmax minmax(game.get_player(player_e::p1), level);
+    //    Minmax minmax(game.get_player(player_e::p1), menu.get_ai_level());
 
     while(game.is_finished() == false)
     {

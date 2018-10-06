@@ -12,10 +12,10 @@ class Player
 public:
     Player(const std::string& name, bool is_ai = false) : name(name), ai(is_ai) {}
 
-    void set_name(const std::string& _name) { name = _name; }
+    //    void set_name(const std::string& _name) { name = _name; }
     std::string get_name() const { return name; }
-
-    void set_ai() { ai = true; }
+    //
+    //    void set_ai() { ai = true; }
     bool is_ai() const { return ai; }
 
 private:

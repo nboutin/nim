@@ -13,6 +13,17 @@ void Menu_View::display()
 
     for(int p = 1; p <= 2; ++p)
         construct_player(p);
+
+    for(auto p : players)
+        if(p.is_ai())
+        {
+            cout << "Choose AI level [6]:";
+            string level;
+            getline(std::cin, level);
+            if(!level.empty())
+                ai_level = std::stoi(level);
+            break;
+        }
 }
 
 void Menu_View::construct_player(int player_num)
