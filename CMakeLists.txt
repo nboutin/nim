@@ -23,3 +23,7 @@ add_subdirectory(source)
 ##### Test
 
 add_subdirectory(test)
+
+##### Continuous Integration
+
+include(cmake/cppcheck.cmake)
