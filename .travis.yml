@@ -3,9 +3,6 @@ dist: trusty
 os: linux
 sudo: require
 language: cpp
-#compiler:
-#   - gcc
-#   - clang
 
 notifications:
    email:
@@ -29,7 +26,6 @@ addons:
 #   - sudo apt-get update -qq
 
 install:
-   # C++17
 #   - sudo apt-get install -qq g++-7
    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
@@ -46,9 +42,6 @@ matrix:
         env: TEST="clang-6.0"
         script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
       - os: linux
-        env: TEST="cppcheck"
-        script: cmake .. && make -j 8 && make check
-      - os: linux
         env: TEST="whitespace"
         script: |
          if [[ -n $(git diff --check HEAD^) ]]; then
@@ -56,4 +49,11 @@ matrix:
            git diff --check HEAD^
            exit -1
          fi
+      - os: linux
+        env: TEST="cppcheck"
+        script: cmake -DENABLE_CPPCHECK=ON .. && make -j 8 && make check
+      - os: linux
+        env: TEST="clang-tidy"
+        script: cmake -DENABLE_CLANG_TIDY=ON ..
+
 
