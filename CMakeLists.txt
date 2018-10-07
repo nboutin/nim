@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(nim)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output)
 
 ##### Configure
@@ -27,3 +28,4 @@ add_subdirectory(test)
 ##### Continuous Integration
 
 include(cmake/cppcheck.cmake)
+include(cmake/clang_tidy.cmake)
