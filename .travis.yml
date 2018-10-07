@@ -1,10 +1,10 @@
 ##### Configuration
-language: cpp
 dist: trusty
 os: linux
 sudo: require
-compiler:
-   - gcc
+language: cpp
+#compiler:
+#   - gcc
 #   - clang
 
 notifications:
@@ -40,10 +40,16 @@ before_script:
 matrix:
    include:
       - os: linux
-        script: cmake .. && make -j 8
+        env: TEST="g++-7"
+        script: cmake -DCMAKE_CXX_COMPILER="g++-7" .. && make -j 8
       - os: linux
+        env: TEST="clang-6.0"
+        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
+      - os: linux
+        env: TEST="cppcheck"
         script: cmake .. && make -j 8 && make check
       - os: linux
+        env: TEST="whitespace"
         script: |
          if [[ -n $(git diff --check HEAD^) ]]; then
            echo "You must remove whitespace before submitting a pull request"
