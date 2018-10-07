@@ -57,11 +57,11 @@ matrix:
         script: cmake -DENABLE_CLANG_TIDY=ON ..
       - os: linux
         env: TEST="Google Address Sanitizer"
-        script: cmake -DENABLE_ASAN=ON && make -j 8
+        script: cmake -DENABLE_ASAN=ON .. && make -j 8
       - os: linux
         env: TEST="Google Undefined Sanitizer"
-        script: cmake -DENABLE_USAN=ON && make -j 8
+        script: cmake -DENABLE_USAN=ON .. && make -j 8
       - os: linux
         env: TEST="Google Thread Sanitizer"
-        script: cmake -DENABLE_TSAN=ON && make -j 8
+        script: cmake -DENABLE_TSAN=ON .. && make -j 8
 

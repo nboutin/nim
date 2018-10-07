@@ -29,3 +29,4 @@ add_subdirectory(test)
 
 include(cmake/cppcheck.cmake)
 include(cmake/clang_tidy.cmake)
+include(cmake/google_sanitizers.cmake)
