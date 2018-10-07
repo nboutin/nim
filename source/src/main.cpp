@@ -17,14 +17,14 @@ int main(int argc, char* argv[])
     menu.display();
     auto players = menu.get_players();
 
-    Nim game(15);
+    Nim game(menu.get_token_count());
     game.set_player(player_e::p1, players.at(0));
     game.set_player(player_e::p2, players.at(1));
 
     Minmax p1_minmax(game.get_player(player_e::p1), menu.get_ai_level());
     Minmax p2_minmax(game.get_player(player_e::p2), menu.get_ai_level());
 
-    View_ASCII view(game.get_board().get_tokens());
+    View_ASCII view(game.get_board());
 
     while(game.is_finished() == false)
     {
