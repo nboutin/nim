@@ -12,16 +12,26 @@ notifications:
       recipients:     
          - boutwork@gmail.com 
       on_success: change
-      on_failure: change
+      on_failure: always
 
-before_install:
-   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-   - sudo apt-get update -qq
+addons:
+   apt:
+      sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-5.0
+      packages:
+      - g++-7
+      - clang-6.0
+      - clang-tidy-6.0
 
-install: 
-   # C++17
-   - sudo apt-get install -qq g++-7
-   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+#before_install:
+#   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+#   - sudo apt-get update -qq
+#
+#install:
+#   # C++17
+#   - sudo apt-get install -qq g++-7
+#   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
 before_script:
    - mkdir build
