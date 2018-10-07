@@ -26,7 +26,9 @@ private:
     std::array<nim::Board::move_t, nim::Board::MOVE_MAX> generate_moves() const;
     bool is_leaf(const nim::Nim& game, depth_t depth) const;
 
+    nim::Board::move_t minmax(nim::Nim& game) const;
     eval_t minmax(nim::Nim& game, depth_t depth, bool is_max) const;
+
     nim::Board::move_t minmax_parallel(nim::Nim& game) const;
     eval_t minmax_copy(nim::Nim game, const depth_t depth, bool is_max) const;
 

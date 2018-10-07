@@ -4,3 +4,4 @@ Debug/
 .settings/
 .settings/language.settings.xml
 /Test/
+perf.data*

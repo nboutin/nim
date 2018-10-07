@@ -16,7 +16,7 @@ int16_t Minmax::minmax_copy(Nim game, const depth_t depth, bool is_max) const
 nim::Board::move_t Minmax::minmax_parallel(nim::Nim& game) const
 {
     Board::move_t best_move{};
-    auto max    = std::numeric_limits<int16_t>::min();
+    auto max    = std::numeric_limits<eval_t>::min();
     using f_min = std::pair<Board::move_t, std::future<int16_t>>;
     std::vector<f_min> vf_mins;
 
