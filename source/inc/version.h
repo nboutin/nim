@@ -3,5 +3,5 @@
 
 namespace nim
 {
-constexpr auto VERSION = "0.3.0";
+constexpr auto VERSION = "1.0.0";
 }
