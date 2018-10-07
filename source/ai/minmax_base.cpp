@@ -25,7 +25,7 @@ Minmax::compute(Nim game, const algo algo, const std::chrono::seconds _duration_
     case algo::minmax: return minmax(game);
     case algo::minmax_parallel: return minmax_parallel(game);
     }
-    return {0};
+    return 0;
 }
 
 std::array<nim::Board::move_t, Board::MOVE_MAX> Minmax::generate_moves() const { return {1, 2, 3}; }
