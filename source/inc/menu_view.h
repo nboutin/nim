@@ -19,6 +19,6 @@ private:
     void construct_player(int player_num);
 
     std::vector<Player> players;
-    int ai_level = 0;
+    int ai_level = 6;
 };
 }

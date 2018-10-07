@@ -17,11 +17,12 @@ int main(int argc, char* argv[])
     menu.display();
     auto players = menu.get_players();
 
-    Nim game;
+    Nim game(15);
     game.set_player(player_e::p1, players.at(0));
     game.set_player(player_e::p2, players.at(1));
 
-    Minmax minmax(game.get_player(player_e::p1), menu.get_ai_level());
+    Minmax p1_minmax(game.get_player(player_e::p1), menu.get_ai_level());
+    Minmax p2_minmax(game.get_player(player_e::p2), menu.get_ai_level());
 
     View_ASCII view(game.get_board().get_tokens());
 
@@ -35,7 +36,14 @@ int main(int argc, char* argv[])
         // Input
         Board::move_t m;
         if(game.get_current_player().is_ai())
-            m = minmax.compute(game, Minmax::algo::minmax, chrono::seconds(5));
+        {
+            if(game.get_current_player() == game.get_player(player_e::p1))
+                m = p1_minmax.compute(game, Minmax::algo::minmax);
+            else if(game.get_current_player() == game.get_player(player_e::p2))
+                m = p2_minmax.compute(game, Minmax::algo::minmax);
+            else
+                std::abort();
+        }
         else
         {
             std::string input;
