@@ -26,10 +26,18 @@ install:
 before_script:
    - mkdir build
    - cd build
-  
-script: 
-   - cmake .. && make -j 8
-   # cppcheck
-   - make check
 
-  
+matrix:
+   include:
+      - os: linux
+        script: cmake .. && make -j 8
+      - os: linux
+        script: cmake .. && make -j 8 && make check
+      - os: linux
+        script: |
+         if [[ -n $(git diff --check HEAD^) ]]; then
+           echo "You must remove whitespace before submitting a pull request"
+           git diff --check HEAD^
+           exit -1
+         fi
+
