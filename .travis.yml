@@ -38,9 +38,9 @@ matrix:
       - os: linux
         env: TEST="g++-7"
         script: cmake -DCMAKE_CXX_COMPILER="g++-7" .. && make -j 8
-      - os: linux
-        env: TEST="clang-6.0"
-        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
+#      - os: linux
+#        env: TEST="clang-6.0"
+#        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
       - os: linux
         env: TEST="whitespace"
         script: |
@@ -55,5 +55,13 @@ matrix:
       - os: linux
         env: TEST="clang-tidy"
         script: cmake -DENABLE_CLANG_TIDY=ON ..
-
+      - os: linux
+        env: TEST="Google Address Sanitizer"
+        script: cmake -DENABLE_ASAN=ON && make -j 8
+      - os: linux
+        env: TEST="Google Undefined Sanitizer"
+        script: cmake -DENABLE_USAN=ON && make -j 8
+      - os: linux
+        env: TEST="Google Thread Sanitizer"
+        script: cmake -DENABLE_TSAN=ON && make -j 8
 
