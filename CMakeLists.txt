@@ -7,8 +7,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output)
 
 ##### Configure
 
-set(MAJOR 0)
-set(MINOR 3)
+set(MAJOR 1)
+set(MINOR 0)
 set(PATCH 0)
 
 configure_file(
