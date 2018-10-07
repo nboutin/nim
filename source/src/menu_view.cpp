@@ -1,5 +1,6 @@
 
 #include "menu_view.h"
+#include "version.h"
 
 #include <iostream>
 
@@ -10,6 +11,14 @@ void Menu_View::display()
 {
     if(std::system("clear") == -1)
         return;
+
+    cout << "Nim " << VERSION << "\n";
+
+    cout << "Token count [15]:";
+    string token;
+    getline(std::cin, token);
+    if(!token.empty())
+        tokens_count = std::stoi(token);
 
     for(int p = 1; p <= 2; ++p)
         construct_player(p);

@@ -1,7 +1,7 @@
 
-#include "nim.h"
-//#include "minmax.h"
 #include "menu_view.h"
+#include "minmax.h"
+#include "nim.h"
 #include "view_ascii.h"
 
 #include <iostream>
@@ -9,7 +9,7 @@
 
 using namespace nim;
 using namespace std;
-// using namespace ai;
+using namespace ai;
 
 int main(int argc, char* argv[])
 {
@@ -17,13 +17,14 @@ int main(int argc, char* argv[])
     menu.display();
     auto players = menu.get_players();
 
-    Nim game;
+    Nim game(menu.get_token_count());
     game.set_player(player_e::p1, players.at(0));
     game.set_player(player_e::p2, players.at(1));
 
-    View_ASCII view(game.get_board().get_tokens());
+    Minmax p1_minmax(game.get_player(player_e::p1), menu.get_ai_level());
+    Minmax p2_minmax(game.get_player(player_e::p2), menu.get_ai_level());
 
-    //    Minmax minmax(game.get_player(player_e::p1), menu.get_ai_level());
+    View_ASCII view(game.get_board());
 
     while(game.is_finished() == false)
     {
@@ -33,20 +34,30 @@ int main(int argc, char* argv[])
         view.display();
 
         // Input
-        std::string input;
-        getline(std::cin, input);
-        if(input.empty())
+        Board::move_t m;
+        if(game.get_current_player().is_ai())
         {
-            view.message("Input is invalid");
-            continue;
+            if(game.get_current_player() == game.get_player(player_e::p1))
+                m = p1_minmax.compute(game, Minmax::algo::minmax);
+            else if(game.get_current_player() == game.get_player(player_e::p2))
+                m = p2_minmax.compute(game, Minmax::algo::minmax);
+            else
+                std::abort();
         }
-        //        if(game.get_current_player().is_ai())
-        //            y = minmax.compute(game, Minmax::algo::minmax_parallel, chrono::seconds(5));
-        //        else
-        //        cin >> m;
+        else
+        {
+            std::string input;
+            getline(std::cin, input);
+            if(input.empty())
+            {
+                view.message("Input is invalid");
+                continue;
+            }
+            m = std::stoi(input);
+        }
 
         // Compute
-        if(game.play(std::stoi(input)) == false)
+        if(game.play(m) == false)
         {
             view.message("Input is invalid");
             continue;

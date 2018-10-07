@@ -14,7 +14,7 @@ namespace nim
 class View_ASCII
 {
 public:
-    View_ASCII(const Board::grid_t& g);
+    View_ASCII(const Board& b);
 
     void display(bool clear = true);
     void message(const std::string& msg);
@@ -23,10 +23,10 @@ public:
     void set_current_player(const Player& p) { current_player = p; }
 
 private:
-    void print_grid(const Board::grid_t& g) const;
+    void print_grid(const Board& b) const;
     void print_history() const;
 
-    const Board::grid_t& grid;
+    const Board& board;
     std::vector<std::string> msgs;
     Nim::moves_t history;
     Player current_player;

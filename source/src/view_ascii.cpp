@@ -1,5 +1,6 @@
 
 #include "view_ascii.h"
+#include "version.h"
 
 #include <iomanip>
 #include <iostream>
@@ -7,16 +8,16 @@
 using namespace nim;
 using namespace std;
 
-View_ASCII::View_ASCII(const Board::grid_t& g) : grid(g), current_player("") {}
+View_ASCII::View_ASCII(const Board& b) : board(b), current_player("") {}
 
 void View_ASCII::display(bool clear)
 {
     if(clear && std::system("clear") == -1)
         return;
 
-    cout << "Nim v0.3.0\n";
+    cout << "Nim " << VERSION << "\n";
 
-    print_grid(grid);
+    print_grid(board);
     print_history();
     cout << current_player.get_name() << ":";
 
@@ -43,13 +44,13 @@ void View_ASCII::print_history() const
     cout << '\n';
 }
 
-void View_ASCII::print_grid(const Board::grid_t& g) const
+void View_ASCII::print_grid(const Board& b) const
 {
-    for(auto i = 1; i < Board::TOKEN_COUNT + 1; ++i)
+    for(auto i = 1; i < b.get_default_tokens() + 1; ++i)
         cout << setw(3) << std::to_string(i);
-    cout << '\n';
+    cout << "\n ";
 
-    for(auto i = 0; i < g; ++i)
+    for(auto i = 0; i < b.get_tokens(); ++i)
         cout << " | ";
     cout << '\n';
 }

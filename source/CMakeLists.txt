@@ -5,6 +5,13 @@ project(nim)
 
 ##### 3rd party
 
+##### Configure
+
+configure_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/conf/version
+	${CMAKE_CURRENT_SOURCE_DIR}/inc/version.h
+)
+
 ##### Include
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
@@ -19,8 +26,8 @@ set(SOURCE
 	${CMAKE_CURRENT_SOURCE_DIR}/src/nim.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/board.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/view_ascii.cpp
-#	${CMAKE_CURRENT_SOURCE_DIR}/ai/minmax.cpp
-#	${CMAKE_CURRENT_SOURCE_DIR}/ai/evaluate.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/ai/minmax.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/ai/evaluate.cpp
 )
 
 ##### Compilation
