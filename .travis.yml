@@ -19,11 +19,19 @@ before_install:
    - sudo apt-get update -qq
 
 install: 
+   # C++17
    - sudo apt-get install -qq g++-7
    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
+   # cppcheck
+   - sudo apt-get install -qq cppcheck
 
 before_script:
    - mkdir build
    - cd build
   
-script: cmake .. && make -j 4
+script: 
+   - cmake .. && make -j 4
+   # cppcheck
+   - cppcheck --quiet --error-exitcode=1 .
+
+  
