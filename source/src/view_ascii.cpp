@@ -47,7 +47,7 @@ void View_ASCII::print_grid(const Board::grid_t& g) const
 {
     for(auto i = 1; i < Board::TOKEN_COUNT + 1; ++i)
         cout << setw(3) << std::to_string(i);
-    cout << '\n';
+    cout << "\n ";
 
     for(auto i = 0; i < g; ++i)
         cout << " | ";
