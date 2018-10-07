@@ -28,6 +28,7 @@ set(SOURCE
 	${CMAKE_SOURCE_DIR}/source/src/board.cpp
 	${CMAKE_SOURCE_DIR}/source/src/nim.cpp
 	${CMAKE_SOURCE_DIR}/source/ai/minmax.cpp
+	${CMAKE_SOURCE_DIR}/source/ai/minmax_parallel.cpp
 	${CMAKE_SOURCE_DIR}/source/ai/evaluate.cpp
 )
 

@@ -17,7 +17,7 @@ Minmax::Minmax(const Player& p, const depth_t depth) : depth(depth), player(p) {
 Board::move_t Minmax::compute(Nim game, algo algo, const std::chrono::seconds _duration_min) const
 {
     Board::move_t best_move = 0;
-    auto max                = std::numeric_limits<int16_t>::min();
+    auto max                = std::numeric_limits<eval_t>::min();
     start                   = chrono::high_resolution_clock::now();
     duration_min            = _duration_min;
 
@@ -41,6 +41,7 @@ Board::move_t Minmax::compute(Nim game, algo algo, const std::chrono::seconds _d
         }
         return best_move;
     }
+    case algo::minmax_parallel: return minmax_parallel(game);
     }
     return best_move;
 }
@@ -53,15 +54,15 @@ bool Minmax::is_leaf(const Nim& game, const depth_t _depth) const
     return (game.is_finished() || (_depth <= 0 && d >= duration_min));
 }
 
-int16_t Minmax::minmax(Nim& game, const depth_t _depth, bool is_max) const
+Minmax::eval_t Minmax::minmax(Nim& game, const depth_t _depth, bool is_max) const
 {
     if(is_leaf(game, _depth))
         return evaluate(game, player);
 
     if(!is_max)    // min
     {
-        int16_t min = std::numeric_limits<int16_t>::max();
-        auto moves  = generate_moves();
+        eval_t min = std::numeric_limits<int16_t>::max();
+        auto moves = generate_moves();
         for(auto m : moves)
         {
             if(game.play(m))
@@ -73,8 +74,8 @@ int16_t Minmax::minmax(Nim& game, const depth_t _depth, bool is_max) const
     }
     else
     {
-        int16_t max = std::numeric_limits<int16_t>::min();
-        auto moves  = generate_moves();
+        eval_t max = std::numeric_limits<int16_t>::min();
+        auto moves = generate_moves();
         for(auto m : moves)
         {
             if(game.play(m))

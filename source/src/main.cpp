@@ -38,9 +38,9 @@ int main(int argc, char* argv[])
         if(game.get_current_player().is_ai())
         {
             if(game.get_current_player() == game.get_player(player_e::p1))
-                m = p1_minmax.compute(game, Minmax::algo::minmax);
+                m = p1_minmax.compute(game, Minmax::algo::minmax_parallel);
             else if(game.get_current_player() == game.get_player(player_e::p2))
-                m = p2_minmax.compute(game, Minmax::algo::minmax);
+                m = p2_minmax.compute(game, Minmax::algo::minmax_parallel);
             else
                 std::abort();
         }
