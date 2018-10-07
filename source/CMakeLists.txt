@@ -5,6 +5,13 @@ project(nim)
 
 ##### 3rd party
 
+##### Configure
+
+configure_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/conf/version
+	${CMAKE_CURRENT_SOURCE_DIR}/inc/version.h
+)
+
 ##### Include
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)

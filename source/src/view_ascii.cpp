@@ -1,5 +1,6 @@
 
 #include "view_ascii.h"
+#include "version.h"
 
 #include <iomanip>
 #include <iostream>
@@ -14,7 +15,7 @@ void View_ASCII::display(bool clear)
     if(clear && std::system("clear") == -1)
         return;
 
-    cout << "Nim v0.3.0\n";
+    cout << "Nim " << VERSION << "\n";
 
     print_grid(board);
     print_history();
