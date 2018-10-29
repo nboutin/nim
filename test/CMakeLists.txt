@@ -1,26 +1,11 @@
 ##### Coniguration
 
 cmake_minimum_required(VERSION 3.0.0)
-project(nim_test)
+project(${PROJECT_NAME}_test)
 
-##### 3rd party
+##### Target
 
-# Prepare "Catch" library for other executables
-set(CATCH_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/catch)
-add_library(Catch INTERFACE)
-target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
-
-##### Includes
-
-include_directories(
-	${CMAKE_CURRENT_SOURCE_DIR}/inc
-	${CMAKE_SOURCE_DIR}/source/inc
-	${CMAKE_SOURCE_DIR}/source/ai
-)
-
-##### Sources
-
-set(SOURCE 
+add_executable(${PROJECT_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/test_board.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/test_nim.cpp
@@ -30,20 +15,30 @@ set(SOURCE
 	${CMAKE_SOURCE_DIR}/source/ai/minmax_base.cpp
 	${CMAKE_SOURCE_DIR}/source/ai/minmax.cpp
 	${CMAKE_SOURCE_DIR}/source/ai/minmax_parallel.cpp
-	${CMAKE_SOURCE_DIR}/source/ai/evaluate.cpp
-)
+	${CMAKE_SOURCE_DIR}/source/ai/evaluate.cpp)
+	
+##### Includes
 
-##### Compilation
+target_include_directories(${PROJECT_NAME}
+	PRIVATE
+	${CMAKE_CURRENT_SOURCE_DIR}/inc
+	${CMAKE_SOURCE_DIR}/source/inc
+	${CMAKE_SOURCE_DIR}/source/ai)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=gnu++17")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+##### 3rd party
 
-##### Target
+add_library(Catch INTERFACE)
+target_include_directories(Catch INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
-add_executable(${PROJECT_NAME} ${SOURCE})
+##### Link
 
 target_link_libraries(
 	${PROJECT_NAME}
 	Catch
 	pthread
 )
+
+##### Compile options
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+

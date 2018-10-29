@@ -11,7 +11,7 @@ using namespace nim;
 using namespace std;
 using namespace ai;
 
-int main(int argc, char* argv[])
+int main()
 {
     Menu_View menu;
     menu.display();

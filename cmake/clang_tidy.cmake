@@ -1,5 +1,8 @@
 
 if(ENABLE_CLANG_TIDY)
+
+	set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 	find_program(CLANG_TIDY_BIN clang-tidy-6.0)
 	find_program(RUN_CLANG_TIDY_BIN run-clang-tidy-6.0.py)
 
