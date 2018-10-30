@@ -1,26 +1,10 @@
 ##### Configuration
 
-cmake_minimum_required(VERSION 3.0.0)
-project(nim)
+cmake_minimum_required(VERSION 3.9.0)
 
-##### 3rd party
+##### Target
 
-##### Configure
-
-configure_file(
-	${CMAKE_CURRENT_SOURCE_DIR}/conf/version
-	${CMAKE_CURRENT_SOURCE_DIR}/inc/version.h
-)
-
-##### Include
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ai)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external)
-
-##### Source
-
-set(SOURCE
+add_executable(${PROJECT_NAME}
 	${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/menu_view.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/nim.cpp
@@ -29,21 +13,32 @@ set(SOURCE
 	${CMAKE_CURRENT_SOURCE_DIR}/ai/minmax_base.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ai/minmax.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/ai/minmax_parallel.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/ai/evaluate.cpp
-)
+	${CMAKE_CURRENT_SOURCE_DIR}/ai/evaluate.cpp)
 
-##### Compilation
+##### Include
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=gnu++17")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+target_include_directories(${PROJECT_NAME}
+	PRIVATE
+	${CMAKE_CURRENT_SOURCE_DIR}/inc
+	${CMAKE_CURRENT_SOURCE_DIR}/ai
+	${CMAKE_CURRENT_SOURCE_DIR}/external)
 
-##### Target
+##### 3rd party
 
-add_executable(${PROJECT_NAME} ${SOURCE})
+##### Configure
+
+configure_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/conf/version
+	${CMAKE_CURRENT_SOURCE_DIR}/inc/version.h)
+
+##### Link
 
 target_link_libraries(${PROJECT_NAME}
-	pthread
-)
+	pthread)
+
+##### Compile options
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 ##### Install
 

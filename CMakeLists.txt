@@ -1,21 +1,22 @@
 ##### Configuration
 
-cmake_minimum_required(VERSION 3.0.0)
-project(nim)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output)
+cmake_minimum_required(VERSION 3.9.0)
+project(nim 
+	VERSION 1.0.0
+	DESCRIPTION	"Nim board game"
+	LANGUAGES CXX
+)
 
 ##### Configure
-
-set(MAJOR 1)
-set(MINOR 0)
-set(PATCH 0)
 
 configure_file(
 	${CMAKE_CURRENT_SOURCE_DIR}/conf/VERSION
 	${CMAKE_CURRENT_SOURCE_DIR}/VERSION
 )
+
+##### Compile options
+
+add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 
 ##### Source
 

@@ -3,5 +3,5 @@
 
 namespace nim
 {
-constexpr auto VERSION = "@MAJOR@.@MINOR@.@PATCH@";
+constexpr auto VERSION = "@PROJECT_VERSION@";
 }
