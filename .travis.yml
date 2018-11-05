@@ -48,15 +48,15 @@ matrix:
      - ubuntu-toolchain-r-test
      packages: 
      - ninja-build
-     - g++-5
+     - g++-7
    script: 
-   - cmake -H. -Bninja -GNinja -DCMAKE_CXX_COMPILER="g++-5"
+   - cmake -H. -Bninja -GNinja -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build ninja
    -
-   - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="g++-5"
+   - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build release -- -j 8
    -
-   - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-5"
+   - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build debug -- -j 8
 
 #      - os: linux
