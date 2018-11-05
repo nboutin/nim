@@ -44,8 +44,7 @@ matrix:
    env: NAME="Config"
    addons:
     apt:
-     sources:
-     - ubuntu-toolchain-r-test
+     sources: ubuntu-toolchain-r-test
      packages: 
      - ninja-build
      - g++-7
@@ -58,6 +57,17 @@ matrix:
    -
    - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build debug -- -j 8
+ 
+ - os: linux
+   env: NAME="TEST"
+   addons:
+    apt:
+     sources: ubuntu-toolchain-r-test
+     packages: g++-7
+   script:
+   - cmake -H. build -Bbuild -DCMAKE_CXX_COMPILER="g++-7"
+   - cmake --build build -- -j 8
+   - cmake --build build --target test
 
 #      - os: linux
 #        env: TEST="g++-7"
