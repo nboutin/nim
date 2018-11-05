@@ -9,7 +9,7 @@ project(nim
 
 ##### Configure
 
-configure_file(conf/VERSION VERSION.md)
+configure_file(conf/VERSION ${CMAKE_SOURCE_DIR}/VERSION.md)
 
 ##### Compile options
 
