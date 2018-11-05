@@ -9,10 +9,7 @@ project(nim
 
 ##### Configure
 
-configure_file(
-	${CMAKE_CURRENT_SOURCE_DIR}/conf/VERSION
-	${CMAKE_CURRENT_SOURCE_DIR}/VERSION
-)
+configure_file(conf/VERSION VERSION.md)
 
 ##### Compile options
 
@@ -24,6 +21,8 @@ add_subdirectory(source)
 
 ##### Test
 
+enable_testing()
+include(CTest)
 add_subdirectory(test)
 
 ##### Continuous Integration

@@ -1,4 +1,4 @@
-##### Coniguration
+##### Configuration
 
 cmake_minimum_required(VERSION 3.9.0)
 project(${PROJECT_NAME}_test)
@@ -42,3 +42,6 @@ target_link_libraries(
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
+##### Test
+
+add_test(NAME all COMMAND ${PROJECT_NAME})

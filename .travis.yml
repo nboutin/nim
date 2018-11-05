@@ -1,7 +1,7 @@
 ##### Configuration
 dist: trusty
 os: linux
-sudo: require
+#sudo: require
 language: cpp
 
 notifications:
@@ -11,64 +11,66 @@ notifications:
       on_success: change
       on_failure: always
 
-addons:
-   apt:
-      sources:
-      - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-6.0
-      packages:
-      - g++-7
-      - clang-6.0
-      - clang-tidy-6.0
-      - ninja-build
+#addons:
+#   apt:
+#      sources:
+#      - ubuntu-toolchain-r-test
+#      - llvm-toolchain-trusty-6.0
+#      packages:
+#      - g++-7
+#      - clang-6.0
+#      - clang-tidy-6.0
+#      - ninja-build
 
 #before_install:
 #   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
 #   - sudo apt-get update -qq
 
-install:
+#install:
 #   - sudo apt-get install -qq g++-7
-   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
-
-before_script:
-#   - mkdir build
-#   - cd build
+#   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
 matrix:
    include:
       - os: linux
-        env: TEST="Config"
+        env: NAME="Config"
         script: 
-         - cmake -H. -Bninja -GNinja && cmake --build ninja
-         - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release && cmake --build release
-         - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug && cmake --build debug 
-      - os: linux
-        env: TEST="g++-7"
-        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
+         - cmake -H. -Bninja -GNinja
+         - cmake --build ninja
+         -
+         - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release
+         - cmake --build release -- -j 8
+         -
+         - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug
+         - cmake --build debug -- -j 8
+ 
 #      - os: linux
-#        env: TEST="clang-6.0"
-#        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
-      - os: linux
-        env: TEST="whitespace"
-        script: |
-         if [[ -n $(git diff --check HEAD^) ]]; then
-           echo "You must remove whitespace before submitting a pull request"
-           git diff --check HEAD^
-           exit -1
-         fi
-      - os: linux
-        env: TEST="cppcheck"
-        script: cmake -H. -Bbuild -DENABLE_CPPCHECK=ON && cd build && make -j 8 && make check
-      - os: linux
-        env: TEST="clang-tidy"
-        script: cmake -H. -Bbuild -DENABLE_CLANG_TIDY=ON
-      - os: linux
-        env: TEST="Google Address Sanitizer"
-        script: cmake -H. -Bbuild -DENABLE_ASAN=ON && cd build && make -j 8
-      - os: linux
-        env: TEST="Google Undefined Sanitizer"
-        script: cmake -H. -Bbuild -DENABLE_USAN=ON && cd build && make -j 8
-      - os: linux
-        env: TEST="Google Thread Sanitizer"
-        script: cmake -H. -Bbuild -DENABLE_TSAN=ON && cd build && make -j 8
+#        env: TEST="g++-7"
+#        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
+##      - os: linux
+##        env: TEST="clang-6.0"
+##        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
+#      - os: linux
+#        env: TEST="whitespace"
+#        script: |
+#         if [[ -n $(git diff --check HEAD^) ]]; then
+#           echo "You must remove whitespace before submitting a pull request"
+#           git diff --check HEAD^
+#           exit -1
+#         fi
+#      - os: linux
+#        env: TEST="cppcheck"
+#        script: cmake -H. -Bbuild -DENABLE_CPPCHECK=ON && cd build && make -j 8 && make check
+#      - os: linux
+#        env: TEST="clang-tidy"
+#        script: cmake -H. -Bbuild -DENABLE_CLANG_TIDY=ON
+#      - os: linux
+#        env: TEST="Google Address Sanitizer"
+#        script: cmake -H. -Bbuild -DENABLE_ASAN=ON && cd build && make -j 8
+#      - os: linux
+#        env: TEST="Google Undefined Sanitizer"
+#        script: cmake -H. -Bbuild -DENABLE_USAN=ON && cd build && make -j 8
+#      - os: linux
+#        env: TEST="Google Thread Sanitizer"
+#        script: cmake -H. -Bbuild -DENABLE_TSAN=ON && cd build && make -j 8
 
