@@ -59,16 +59,20 @@ matrix:
    - cmake --build debug -- -j 8
  
  - os: linux
-   env: NAME="TEST"
+   env: NAME="Test"
    addons:
     apt:
      sources: ubuntu-toolchain-r-test
      packages: g++-7
    script:
-   - cmake -H. build -Bbuild -DCMAKE_CXX_COMPILER="g++-7"
-   - cmake --build build -- -j 8
-   - cmake --build build --target test
-
+   - cmake -H. -Bbuild/release -DCMAKE_CXX_COMPILER="g++-7" -DCMAKE_BUILD_TYPE=Release
+   - cmake --build build/release -- -j 8
+   - cmake --build build/release --target test
+   -
+   - cmake -H. -Bbuild/debug -DCMAKE_CXX_COMPILER="g++-7" -DCMAKE_BUILD_TYPE=Debug
+   - cmake --build build/debug -- -j 8
+   - cmake --build build/debug --target test
+   
 #      - os: linux
 #        env: TEST="g++-7"
 #        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
