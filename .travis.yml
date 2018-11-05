@@ -31,18 +31,21 @@ notifications:
 #   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
 matrix:
-   include:
-      - os: linux
-        env: NAME="Config"
-        script: 
-         - cmake -H. -Bninja -GNinja
-         - cmake --build ninja
-         -
-         - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release
-         - cmake --build release -- -j 8
-         -
-         - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug
-         - cmake --build debug -- -j 8
+ include:
+ - os: linux
+   env: NAME="Config"
+   addons:
+    apt:
+     packages: ninja-build
+   script: 
+   - cmake -H. -Bninja -GNinja
+   - cmake --build ninja
+   -
+   - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release
+   - cmake --build release -- -j 8
+   -
+   - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug
+   - cmake --build debug -- -j 8
 
  
 #      - os: linux
