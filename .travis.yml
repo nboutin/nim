@@ -10,10 +10,13 @@ notifications:
   on_success: change
   on_failure: always
 
-addons:
- apt:
-  sources: ubuntu-toolchain-r-test
-  packages: g++-5
+git:
+ depth: false
+
+#addons:
+# apt:
+#  sources: ubuntu-toolchain-r-test
+#  packages: g++-5
   
 #install:
 # - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
@@ -41,7 +44,11 @@ matrix:
    env: NAME="Config"
    addons:
     apt:
-     packages: ninja-build
+     sources:
+     - ubuntu-toolchain-r-test
+     packages: 
+     - ninja-build
+     - g++-5
    script: 
    - cmake -H. -Bninja -GNinja -DCMAKE_CXX_COMPILER="g++-5"
    - cmake --build ninja
