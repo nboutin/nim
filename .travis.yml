@@ -5,11 +5,10 @@ os: linux
 language: cpp
 
 notifications:
-   email:
-      recipients:     
-         - boutwork@gmail.com 
-      on_success: change
-      on_failure: always
+ email:
+  recipients: boutwork@gmail.com 
+  on_success: change
+  on_failure: always
 
 #addons:
 #   apt:
@@ -47,7 +46,7 @@ matrix:
    - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug
    - cmake --build debug -- -j 8
 
- 
+
 #      - os: linux
 #        env: TEST="g++-7"
 #        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
