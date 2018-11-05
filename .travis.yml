@@ -1,7 +1,7 @@
 ##### Configuration
 dist: trusty
 os: linux
-#sudo: require
+sudo: require
 language: cpp
 
 notifications:
