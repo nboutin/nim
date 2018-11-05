@@ -15,8 +15,8 @@ addons:
   sources: ubuntu-toolchain-r-test
   packages: g++-5
   
-install:
- - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+#install:
+# - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
 #   - sudo apt-get install -qq g++-7
 
 #addons:
@@ -43,15 +43,14 @@ matrix:
     apt:
      packages: ninja-build
    script: 
-   - cmake -H. -Bninja -GNinja
+   - cmake -H. -Bninja -GNinja -DCMAKE_CXX_COMPILER="g++-5"
    - cmake --build ninja
    -
-   - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release
+   - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="g++-5"
    - cmake --build release -- -j 8
    -
-   - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug
+   - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-5"
    - cmake --build debug -- -j 8
-
 
 #      - os: linux
 #        env: TEST="g++-7"
