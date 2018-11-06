@@ -26,12 +26,48 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1538930210541</id>
+			<id>1538980276345</id>
 			<name></name>
 			<type>10</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
 				<arguments>1.0-name-matches-false-false-build</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1538980276454</id>
+			<name></name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-output</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1538980277335</id>
+			<name></name>
+			<type>10</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-.settings</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1538980277338</id>
+			<name></name>
+			<type>6</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-.project</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1538980277520</id>
+			<name></name>
+			<type>6</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-.cproject</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>

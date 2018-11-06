@@ -1,123 +1,47 @@
-##### Configuration
+language: cpp
 dist: trusty
 os: linux
-sudo: require
-language: cpp
 
 notifications:
  email:
-  recipients: boutwork@gmail.com 
+  recipients: boutwork@gmail.com
   on_success: change
   on_failure: always
 
 git:
  depth: false
 
-#addons:
-# apt:
-#  sources: ubuntu-toolchain-r-test
-#  packages: g++-5
-  
-#install:
-# - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
-#   - sudo apt-get install -qq g++-7
-
-#addons:
-#   apt:
-#      sources:
-#      - ubuntu-toolchain-r-test
-#      - llvm-toolchain-trusty-6.0
-#      packages:
-#      - g++-7
-#      - clang-6.0
-#      - clang-tidy-6.0
-#      - ninja-build
-
-#before_install:
-#   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-#   - sudo apt-get update -qq
-
-
 matrix:
  include:
  - os: linux
-   env: NAME="Config"
-   addons:
-    apt:
-     sources: ubuntu-toolchain-r-test
-     packages: 
-     - ninja-build
-     - g++-7
-   script: 
+   env: "Trailing Whitespace"
+   script: |
+    if [[ -n $(git diff --check HEAD^) ]]; then
+      echo "You must remove whitespace before submitting a pull request"
+      git diff --check HEAD^
+      exit -1
+    fi
+
+ - os: linux
+   env: "Release/Debug/Ninja"
+   sources: ubuntu-toolchain-r-test
+   packages:
+   - ninja-build
+   - g++-7
+   script:
    - cmake -H. -Bninja -GNinja -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build ninja
-   -
+
    - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build release -- -j 8
    -
    - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build debug -- -j 8
- 
+
  - os: linux
-   env: NAME="Test"
-   addons:
-    apt:
-     sources: ubuntu-toolchain-r-test
-     packages: g++-7
+   env: "Test"
    script:
-   - cmake -H. -Bbuild/release -DCMAKE_CXX_COMPILER="g++-7" -DCMAKE_BUILD_TYPE=Release
-   - cmake --build build/release -- -j 8
-   - cmake --build build/release --target test
-   -
-   - cmake -H. -Bbuild/debug -DCMAKE_CXX_COMPILER="g++-7" -DCMAKE_BUILD_TYPE=Debug
-   - cmake --build build/debug -- -j 8
-   - cmake --build build/debug --target test
-   
-#      - os: linux
-#        env: TEST="g++-7"
-#        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
-##      - os: linux
-##        env: TEST="clang-6.0"
-##        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
-#      - os: linux
-#        env: TEST="whitespace"
-#        script: |
-#         if [[ -n $(git diff --check HEAD^) ]]; then
-#           echo "You must remove whitespace before submitting a pull request"
-#           git diff --check HEAD^
-#           exit -1
-#         fi
-#      - os: linux
-#        env: TEST="cppcheck"
-#        script: cmake -H. -Bbuild -DENABLE_CPPCHECK=ON && cd build && make -j 8 && make check
-#      - os: linux
-#        env: TEST="clang-tidy"
-#        script: cmake -H. -Bbuild -DENABLE_CLANG_TIDY=ON
-#      - os: linux
-#        env: TEST="Google Address Sanitizer"
-#        script: cmake -H. -Bbuild -DENABLE_ASAN=ON && cd build && make -j 8
-#      - os: linux
-#        env: TEST="Google Undefined Sanitizer"
-#        script: cmake -H. -Bbuild -DENABLE_USAN=ON && cd build && make -j 8
-#      - os: linux
-#        env: TEST="Google Thread Sanitizer"
-#        script: cmake -H. -Bbuild -DENABLE_TSAN=ON && cd build && make -j 8
-#  - os: linux
-#    env:
-#      - TEST="Codecov"
-#    addons:
-#      apt:
-#        sources:
-#          - ubuntu-toolchain-r-test
-#        packages:
-#          - gcc-6
-#          - g++-6
-#    script:
-#      - cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-6" ..
-#      - make
-#      - make test
-#      - cd ..
-#
-#    after_success:
-#    - bash <(curl -s https://codecov.io/bash)
+   - cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DENABLE_TEST=ON
+   - cmake --build build -- -j 8
+   - cmake --build build --target test
 
