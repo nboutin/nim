@@ -13,8 +13,8 @@ add_library(business_logic SHARED
 	${CMAKE_SOURCE_DIR}/source/ai/minmax_parallel.cpp
 	${CMAKE_SOURCE_DIR}/source/ai/evaluate.cpp)
 
-target_include_directories(business_logic 
-	PUBLIC 
+target_include_directories(business_logic
+	PUBLIC
 	${CMAKE_SOURCE_DIR}/source/inc
 	${CMAKE_SOURCE_DIR}/source/ai)
 set_target_properties(business_logic PROPERTIES LINKER_LANGUAGE CXX)
