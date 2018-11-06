@@ -4,7 +4,7 @@ os: linux
 
 notifications:
  email:
-  recipients: 
+  recipients:
   - boutwork@gmail.com
   on_success: change
   on_failure: always
