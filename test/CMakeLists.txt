@@ -13,6 +13,12 @@ add_library(business_logic SHARED
 	${CMAKE_SOURCE_DIR}/source/ai/minmax_parallel.cpp
 	${CMAKE_SOURCE_DIR}/source/ai/evaluate.cpp)
 
+if(ENABLE_COVERAGE)
+	# TODO check that we use build_type = Debug
+	target_compile_options(business_logic PRIVATE -g -O0 -fprofile-arcs -ftest-coverage --coverage)
+	target_link_libraries(business_logic PRIVATE gcov)
+endif()
+
 target_include_directories(business_logic
 	PUBLIC
 	${CMAKE_SOURCE_DIR}/source/inc

@@ -8,7 +8,7 @@ project(nim
 
 ##### Configure
 
-configure_file(conf/VERSION ${CMAKE_SOURCE_DIR}/VERSION)
+configure_file(conf/VERSION ${CMAKE_SOURCE_DIR}/VERSION.md)
 
 ##### Compile options
 
@@ -23,6 +23,7 @@ add_subdirectory(source)
 
 if(ENABLE_TEST)
 	enable_testing()
+	include(CTest)
 	add_subdirectory(test)
 endif()
 
