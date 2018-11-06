@@ -22,40 +22,43 @@ addons:
       - clang-tidy-6.0
       - ninja-build
 
-#before_install:
-#   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-#   - sudo apt-get update -qq
-
 install:
 #   - sudo apt-get install -qq g++-7
    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
 
-before_script:
-#   - mkdir build
-#   - cd build
-
 matrix:
    include:
       - os: linux
-        env: TEST="Config"
-        script: 
-         - cmake -H. -Bninja -GNinja && cmake --build ninja
-         - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release && cmake --build release
-         - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug && cmake --build debug 
-      - os: linux
-        env: TEST="g++-7"
-        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
-#      - os: linux
-#        env: TEST="clang-6.0"
-#        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
-      - os: linux
-        env: TEST="whitespace"
+        env: "whitespace"
         script: |
          if [[ -n $(git diff --check HEAD^) ]]; then
            echo "You must remove whitespace before submitting a pull request"
            git diff --check HEAD^
            exit -1
          fi
+
+      - os: linux
+        env: "Release/Debug/Ninja"
+        script: 
+         - cmake -H. -Bninja -GNinja && cmake --build ninja
+         - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release && cmake --build release
+         - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug && cmake --build debug 
+
+      - os: linux
+        env: "g++-7"
+        script: cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" && cmake --build build
+
+#      - os: linux
+#        env: "clang-6.0"
+#        script: cmake -DCMAKE_CXX_COMPILER="clang-6.0" .. && make -j 8
+
+      - os: linux
+        env: "Test"
+        script:
+        - cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DENABLE_TEST=ON
+        - cmake --build build -- -j 8
+        - cmake --build build --target test
+
       - os: linux
         env: TEST="cppcheck"
         script: cmake -H. -Bbuild -DENABLE_CPPCHECK=ON && cd build && make -j 8 && make check
