@@ -4,7 +4,8 @@ os: linux
 
 notifications:
  email:
-  recipients: boutwork@gmail.com
+  recipients: 
+  - boutwork@gmail.com
   on_success: change
   on_failure: always
 
@@ -24,10 +25,12 @@ matrix:
 
  - os: linux
    env: "Release/Debug/Ninja"
-   sources: ubuntu-toolchain-r-test
-   packages:
-   - ninja-build
-   - g++-7
+   addons:
+    apt:
+     sources: ubuntu-toolchain-r-test
+     packages:
+     - ninja-build
+     - g++-7
    script:
    - cmake -H. -Bninja -GNinja -DCMAKE_CXX_COMPILER="g++-7"
    - cmake --build ninja
@@ -40,8 +43,11 @@ matrix:
 
  - os: linux
    env: "Test"
+   addons:
+    apt:
+     sources: ubuntu-toolchain-r-test
+     packages: g++-7
    script:
-   - cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release -DENABLE_TEST=ON
+   - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" -DCMAKE_BUILD_TYPE=Release -DENABLE_TEST=ON
    - cmake --build build -- -j 8
    - cmake --build build --target test
-
