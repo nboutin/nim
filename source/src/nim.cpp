@@ -80,9 +80,8 @@ const Player& Nim::get_player(const player_e p)
     {
     case player_e::p1: return p1;
     case player_e::p2: return p2;
-    default:;
+    default: return p1;
     }
-    assert(false);
 }
 
 void Nim::set_player(const player_e p, const Player& player)
