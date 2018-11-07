@@ -33,3 +33,9 @@ TEST_CASE("winner", "[nim]")
     REQUIRE(n.get_winner_player());
     REQUIRE(n.get_winner_player().value() == n.get_player(player_e::p2));
 }
+
+TEST_CASE("bad move", "[nim]")
+{
+	Nim n;
+	REQUIRE_FALSE(n.play(4));
+}
