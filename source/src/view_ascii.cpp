@@ -2,6 +2,7 @@
 #include "view_ascii.h"
 #include "version.h"
 
+#include <cstddef>
 #include <iomanip>
 #include <iostream>
 
@@ -46,7 +47,7 @@ void View_ASCII::print_history() const
 
 void View_ASCII::print_grid(const Board& b) const
 {
-    for(auto i = 1; i < b.get_default_tokens() + 1; ++i)
+    for(int8_t i = 1; i < b.get_default_tokens() + 1; ++i)
         cout << setw(3) << std::to_string(i);
     cout << "\n ";
 
