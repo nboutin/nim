@@ -90,5 +90,6 @@ void Nim::set_player(const player_e p, const Player& player)
     {
     case player_e::p1: p1 = player; break;
     case player_e::p2: p2 = player; break;
+    default: break;
     }
 }

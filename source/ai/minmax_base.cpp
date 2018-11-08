@@ -24,6 +24,7 @@ Minmax::compute(Nim game, const algo _algo, const std::chrono::seconds _duration
     {
     case algo::minmax: return minmax(game);
     case algo::minmax_parallel: return minmax_parallel(game);
+    default: break;
     }
     return 0;
 }
