@@ -12,15 +12,15 @@ using namespace ai;
 using namespace nim;
 using namespace std;
 
-Minmax::Minmax(const Player& p, const depth_t depth) : depth(depth), player(p) {}
+Minmax::Minmax(const Player& p, const depth_t _depth) : depth(_depth), player(p) {}
 
 Board::move_t
-Minmax::compute(Nim game, const algo algo, const std::chrono::seconds _duration_min) const
+Minmax::compute(Nim game, const algo _algo, const std::chrono::seconds _duration_min) const
 {
     start        = chrono::high_resolution_clock::now();
     duration_min = _duration_min;
 
-    switch(algo)
+    switch(_algo)
     {
     case algo::minmax: return minmax(game);
     case algo::minmax_parallel: return minmax_parallel(game);

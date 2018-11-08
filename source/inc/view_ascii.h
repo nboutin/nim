@@ -27,8 +27,8 @@ private:
     void print_history() const;
 
     const Board& board;
-    std::vector<std::string> msgs;
-    Nim::moves_t history;
+    std::vector<std::string> msgs{};
+    Nim::moves_t history{};
     Player current_player;
 };
 }

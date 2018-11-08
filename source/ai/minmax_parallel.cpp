@@ -8,9 +8,9 @@
 using namespace ai;
 using namespace nim;
 
-int16_t Minmax::minmax_copy(Nim game, const depth_t depth, bool is_max) const
+int16_t Minmax::minmax_copy(Nim game, const depth_t _depth, bool is_max) const
 {
-    return minmax(game, depth, is_max);
+    return minmax(game, _depth, is_max);
 }
 
 nim::Board::move_t Minmax::minmax_parallel(nim::Nim& game) const

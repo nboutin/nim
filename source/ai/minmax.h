@@ -33,8 +33,8 @@ private:
     eval_t minmax_copy(nim::Nim game, const depth_t depth, bool is_max) const;
 
     depth_t depth;
-    mutable std::chrono::time_point<std::chrono::high_resolution_clock> start;
-    mutable std::chrono::seconds duration_min;
+    mutable std::chrono::time_point<std::chrono::high_resolution_clock> start{};
+    mutable std::chrono::seconds duration_min{};
     const nim::Player& player;
 };
 }

@@ -36,7 +36,7 @@ void View_ASCII::print_history() const
     for(auto h : history)
     {
         if(h)
-            cout << (int) h.value();
+            cout << static_cast<int>(h.value());
         else
             cout << '-';
         cout << ",";

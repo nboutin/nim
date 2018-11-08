@@ -17,6 +17,9 @@ public:
     using moves_t = std::vector<std::optional<Board::move_t>>;
 
     Nim(Board::grid_t n_token = Board::TOKEN_COUNT);
+    Nim(const Nim& n) = default;
+    Nim& operator=(const Nim&) = delete;
+
     bool play(Board::move_t m);
     void undo();
 
@@ -43,6 +46,6 @@ private:
 
     Board board;
     bool finished = false;
-    moves_t moves;
+    moves_t moves{};
 };
 }

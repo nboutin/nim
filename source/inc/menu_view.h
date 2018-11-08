@@ -20,7 +20,7 @@ private:
     void construct_player(int player_num);
 
     int tokens_count = 15;
-    std::vector<Player> players;
+    std::vector<Player> players{};
     int ai_level = 6;
 };
 }

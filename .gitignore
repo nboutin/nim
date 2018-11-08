@@ -5,3 +5,5 @@ Debug/
 .settings/language.settings.xml
 /Test/
 perf.data*
+.clang-format
+

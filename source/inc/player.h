@@ -10,7 +10,7 @@ class Player
     friend bool operator==(const Player& lhs, const Player& rhs);
 
 public:
-    Player(const std::string& name, bool is_ai = false) : name(name), ai(is_ai) {}
+    Player(const std::string& _name, bool is_ai = false) : name(_name), ai(is_ai) {}
 
     //    void set_name(const std::string& _name) { name = _name; }
     std::string get_name() const { return name; }
