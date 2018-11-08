@@ -68,7 +68,7 @@ matrix:
    - cmake --build build --target test
    after_success:
    - bash <(curl -s https://codecov.io/bash)
-   
+
  - os: linux
    env: "Google Address/Undefined/Thread Sanitizer"
    addons:
