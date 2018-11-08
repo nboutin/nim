@@ -12,7 +12,7 @@ configure_file(conf/VERSION ${CMAKE_SOURCE_DIR}/VERSION.md)
 
 ##### Compile options
 
-add_compile_options(-Wall -Werror -Wextra -Wpedantic -Wnon-virtual-dtor -Wnon-virtual-dtor -Wshadow -Weffc++ -Wold-style-cast)
+add_compile_options(-Wall -Werror -Wextra -Wpedantic -Wnon-virtual-dtor -Wnon-virtual-dtor -Wshadow -Weffc++ -Wold-style-cast -Wfatal-errors)
 
 ##### Source
 

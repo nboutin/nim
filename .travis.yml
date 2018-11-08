@@ -2,6 +2,10 @@ language: cpp
 dist: trusty
 os: linux
 
+env:
+  global:
+    - MAKEFLAGS="-j 3"
+
 notifications:
  email:
   recipients:
@@ -36,10 +40,10 @@ matrix:
    - cmake --build ninja
 
    - cmake -H. -Brelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER="g++-7"
-   - cmake --build release -- -j 8
+   - cmake --build release
    -
    - cmake -H. -Bdebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-7"
-   - cmake --build debug -- -j 8
+   - cmake --build debug
 
  - os: linux
    env: "Test"
@@ -49,7 +53,7 @@ matrix:
      packages: g++-7
    script:
    - cmake -H. -Bbuild -DCMAKE_CXX_COMPILER="g++-7" -DCMAKE_BUILD_TYPE=Release -DENABLE_TEST=ON
-   - cmake --build build -- -j 8
+   - cmake --build build
    - cmake --build build --target test
 
  - os: linux
@@ -60,7 +64,26 @@ matrix:
      packages: g++-7
    script:
    - cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER="g++-7" -DENABLE_COVERAGE=ON -DENABLE_TEST=ON
-   - cmake --build build -- -j 8
+   - cmake --build build
    - cmake --build build --target test
    after_success:
    - bash <(curl -s https://codecov.io/bash)
+   
+ - os: linux
+   env: "Google Address/Undefined/Thread Sanitizer"
+   addons:
+    apt:
+     sources: ubuntu-toolchain-r-test
+     packages: g++-7
+   script:
+   - cmake -H. -Basan -DCMAKE_CXX_COMPILER="g++-7" -DENABLE_ASAN=ON -DENABLE_TEST=ON
+   - cmake --build asan
+   - cmake --build asan --target test
+   -
+   - cmake -H. -Busan -DCMAKE_CXX_COMPILER="g++-7" -DENABLE_USAN=ON -DENABLE_TEST=ON
+   - cmake --build usan
+   - cmake --build usan --target test
+   -
+   - cmake -H. -Btsan -DCMAKE_CXX_COMPILER="g++-7" -DENABLE_TSAN=ON -DENABLE_TEST=ON
+   - cmake --build tsan
+   - cmake --build tsan --target test
