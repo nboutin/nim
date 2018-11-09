@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.com/nboutin/nim.svg?branch=develop)](https://travis-ci.com/nboutin/nim)
 [![codecov](https://codecov.io/gh/nboutin/nim/branch/master/graph/badge.svg)](https://codecov.io/gh/nboutin/nim)
 [![codecov](https://codecov.io/gh/nboutin/nim/branch/develop/graph/badge.svg)](https://codecov.io/gh/nboutin/nim)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/nboutin/nim.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nboutin/nim/alerts/)
 
 
 # Nim
