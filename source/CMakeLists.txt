@@ -32,8 +32,7 @@ configure_file(
 
 ##### Link
 
-target_link_libraries(${PROJECT_NAME}
-	pthread)
+target_link_libraries(${PROJECT_NAME} pthread ncurses)
 
 ##### Compile options
 
