@@ -11,5 +11,6 @@ Nim game in C++
 
 # Dependencies
 * NCurses 
-..* (sudo apt install libncurses5-dev)
-..* http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/helloworld.html
+    - (sudo apt install libncurses5-dev)
+    - http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/helloworld.html
+    - http://invisible-island.net/ncurses/announce.html
