@@ -86,4 +86,4 @@ matrix:
    -
    - cmake -H. -Btsan -DCMAKE_CXX_COMPILER="g++-7" -DENABLE_TSAN=ON -DENABLE_TEST=ON
    - cmake --build tsan
-   - cmake --build tsan --target test
+   #- cmake --build tsan --target test
